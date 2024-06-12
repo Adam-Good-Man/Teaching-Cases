@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <style>
+      .container {
+        width: 0px;
+        height: 300px;
+        border-left: 150px solid black;
+        border-right: 150px solid white;
+        border-radius: 50%;
+        box-shadow: 0px 0px 36px;
+      }
+      .container::before {
+        content: "";
+        width: 50px;
+        height: 50px;
+        border: 50px solid white;
+        position: absolute;
+        border-radius: 50%;
+        margin-left: -75px;
+        background-color: black;
+      }
+      .container::after {
+        content: "";
+        width: 50px;
+        height: 50px;
+        border: 50px solid black;
+        position: absolute;
+        border-radius: 50%;
+        margin-left: -75px;
+        margin-top: 150px;
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container"></div>
+  </body>
+</html>

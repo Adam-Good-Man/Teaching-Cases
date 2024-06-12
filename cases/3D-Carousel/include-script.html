@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Carousel</title>
+  <style>
+    .content {
+      width: 200px;
+      height: 100px;
+      perspective: 500px;
+      margin: 300px;
+    }
+    ul {
+      list-style: none;
+      transform-style: preserve-3d;
+    }
+    li {
+      width: 80px;
+      height: 120px;
+      position: absolute;
+    }
+    img {
+      width: 80px;
+      height: 120px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content" id="content">
+    <ul></ul>
+  </div>
+  <script>
+    var imgs = [
+      "./assets/s01.jpg",
+      "./assets/s02.jpg",
+      "./assets/s03.jpg",
+      "./assets/s04.jpg",
+      "./assets/s05.jpg",
+      "./assets/s06.jpg"
+    ];
+
+    var dom = document.getElementById("content");
+    // Create a document fragment for better performance
+    var fragment = document.createDocumentFragment();
+    var rotates = [];
+    // This for loop initializes the position of the images
+    for (var i = 0; i < imgs.length; i++) {
+      var li = document.createElement("li");
+      var img = document.createElement("img");
+      img.src = imgs[i];
+      li.appendChild(img);
+      rotates[i] = i * 60;
+      fragment.appendChild(li);
+    }
+    // Append the document fragment to the DOM to reduce reflow and repaint
+    dom.getElementsByTagName("ul")[0].appendChild(fragment);
+    var lis = document.getElementsByTagName("li");
+    // This for loop starts the rotation of the images
+    // Note the use of let instead of var to handle scope issues
+    for (let i = 0; i < lis.length; i++) {
+      setInterval(function() {
+        rotates[i]++;
+        lis[i].style.transform = `rotateY(${rotates[i]}deg) translateZ(120px)`;
+      }, 30);
+    }
+  </script>
+</body>
+</html>
